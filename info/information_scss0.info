@@ -1,0 +1,23 @@
+1. npm i -S node-sass-chokidar
+
+
+2. add in package.json => "scripts"
+
+  "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src -o src/",
+  "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src -o src/ --watch --recursive",
+
+  and ...
+
+  // "start": "react-scripts start",
+  // "build": "react-scripts build",
+  "start-js": "react-scripts start"
+  "start": "npm-run all -p watch-css start-js",
+  "build": "npm run build-css && react-scripts build",
+
+3. npm i --save npm-run-all
+
+
+4. Update npm 
+New minor version of npm available! 6.4.1 → 6.6.0       │
+   │   Changelog: https://github.com/npm/cli/releases/tag/v6.6.0   │
+   │               Run npm install -g npm to update!

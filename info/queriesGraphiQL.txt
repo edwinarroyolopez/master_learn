@@ -1,0 +1,119 @@
+---------------------Q1
+
+##QUERY
+query getCourses($courseID: Int!) {
+  course: course(id: $courseID){
+    title
+    author
+    url
+  }
+}
+ # Otra forma
+query getCourses($courseID: Int!) {
+   course(id: $courseID){
+    title
+    author
+    url
+  }
+}
+
+
+##QUERY VARIABLES
+{
+  "couserID":1
+}
+
+
+---------------------Q2
+##QUERY
+
+#Si tengo varias funciones, deberé elegir, cuál quiero ejecutar,
+#pero debo declarar todas las variables que usaré
+
+#By Id
+query getCourses($courseID: Int!) {
+   curso:course(id: $courseID){
+    title
+    author
+    topic
+    url
+  }
+}
+
+query getCoursesByTopic($courseTopic: String) {
+   cursos: courses(topic: $courseTopic){
+    title
+    author
+    url
+  }
+}
+
+##QUERY VARIABLES
+{
+  "courseID": 2,
+  "courseTopic": "Front"
+}
+
+
+---------------------Q3
+
+
+##QUERY
+#Querys por fragmentos, parecido a un union all, sin embargo no estoy obligado a
+# tener los mismos parámetros
+query getCoursesWithFragments($courseID1: Int!, $courseID2: Int!) {
+  course1: course(id: $courseID1){
+    ...courseFields
+  }
+  course2: course(id: $courseID2){
+    ...courseFields2
+  }
+}
+
+# A través de esta función podré traer sólo los atributos del objeto que yo desee
+#
+fragment courseFields on Course{
+  title
+  author
+  topic
+  url
+}
+
+
+fragment courseFields2 on Course{
+  title
+  author
+}
+
+
+##QUERY VARIABLES
+{
+  "courseID1": 1,
+  "courseID2": 2
+}
+
+
+----- --- Q4 - updtate
+
+##QUERY
+#Querys update
+mutation updateCourseTopic($courseID: Int!,$courseTopic: String!){
+  updateCourseTopic(id:$courseID,topic:$courseTopic){
+    ...courseFields
+  }
+}
+
+
+fragment courseFields on Course{
+  title
+  author
+  topic
+  url
+}
+
+
+##QUERY VARIABLES
+{
+  "courseID":1,
+  "courseTopic":"New topic"
+}

@@ -1,0 +1,82 @@
+1. npm init --yes : Genera un package.json con el nombre del directorio
+
+2. Modulos:
+
+  npm install express graphql express-graphql
+
+
+
+
+  CURSO DE EXPRESS
+  Framework de node
+https://youtu.be/8eg4w8v076w
+
+
+INVESTIGAR TYPESCRIPT
+
+
+
+consulta Graphiql
+
+query getSigleCourse($courseID: Int!){
+  course(id: $courseID){
+    title
+    author
+    topic
+    url
+  }
+}
+/*
+  course => Esta es la consulta en el backend
+*/
+
+-- Query variables
+
+{
+  "courseID":3
+}
+
+
+--- Segunda Query
+query getCourses($courseTopic: String){
+  courses(topic: $courseTopic){
+    title
+    author
+    topic
+    url
+  }
+}
+
+-- Query variables
+
+{
+  "courseTopic":""
+}
+
+
+
+--- Tercera query
+
+query getCoursesWithFragments($courseID1: Int!, $courseID2: Int!){
+  course1: course(id: $courseID1){
+    ...courseFields
+  }
+  course2: course(id: $courseID2){
+    ...courseFields
+  }
+
+}
+  fragment courseFields on Course {
+     title
+    author
+    topic
+    url
+  }
+  --- Query variables
+  {
+  "courseID1":1,
+  "courseID2":3
+}
+
+
+Source: https://www.youtube.com/watch?v=0Hvzg6PSosg
