@@ -1,0 +1,48 @@
+## start project ##
+1. npm install -g create-react-app
+2. create-react-app learning_english
+
+# now we need  redux - apollo - router #
+
+3. Apollo: npm i --save apollo-boost react-apollo graphql
+
+4. Redux: npm i --save redux react-redux redux-thunk history axios
+
+5. Router: npm i --save  react-router react-router-dom
+
+# setting app file #
+6. routes - ApolloClient - ApolloProvider - store - views
+
+# redux -> reducers - actions - services #
+7. reducers
+8. actions
+9. services
+
+# CSS - STYLES #
+10. Definir estilos
+  npm i --save npm-run-all node-sass-chokidar => compilar estilos y código react
+11. Replace scripts: package.json
+"scripts": {
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
+#  #
+12.
+
+
+
+<tbody>
+  {char.map(curChar => (
+    <tr key={curChar.name}>
+      <td>{curChar.name}</td>
+      <td>{curChar.alter_ego}</td>
+      <td>{curChar.first_appearance}</td>
+      <img src={require(`./images/View/${curChar.name}.png`)} />
+    </tr>
+  ))}
+</tbody>
